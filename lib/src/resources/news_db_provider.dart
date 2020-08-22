@@ -6,7 +6,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-class NewsDbProvider implements Source {
+class NewsDbProvider implements Source, Cache {
   Database db;
 
   Future<List<int>> fetchTopIds() {
@@ -61,3 +61,5 @@ class NewsDbProvider implements Source {
     return db.insert("Items", item.toMapForDb());
   }
 }
+
+final newsDbProvider = NewsDbProvider();
