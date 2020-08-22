@@ -1,12 +1,19 @@
 import 'dart:io';
 
 import 'package:news/src/models/item_model.dart';
+import 'package:news/src/resources/repository.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-class NewsDbProvider {
+class NewsDbProvider implements Source {
   Database db;
+
+  Future<List<int>> fetchTopIds() {
+    // TODO: implement fetchTopIds
+    throw UnimplementedError();
+  }
+
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, "items.db");
