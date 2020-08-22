@@ -8,7 +8,9 @@ import 'package:sqflite/sqflite.dart';
 
 class NewsDbProvider implements Source, Cache {
   Database db;
-
+  NewsDbProvider() {
+    init();
+  }
   Future<List<int>> fetchTopIds() {
     // TODO: implement fetchTopIds
     throw UnimplementedError();
