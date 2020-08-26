@@ -9,10 +9,10 @@ class StoriesBloc {
   Stream<Map<int, Future<ItemModel>>> items;
   //getters to stream
   Stream<List<int>> get topIds => _topIds.stream;
-
   StoriesBloc() {
-   items = _items.stream.transform(_itemsTranformer());
+    items = _items.stream.transform(_itemsTranformer());
   }
+
   //getter to sink
   get fetchItem => _items.sink.add;
 
