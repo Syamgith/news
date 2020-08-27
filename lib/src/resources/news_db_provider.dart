@@ -12,8 +12,7 @@ class NewsDbProvider implements Source, Cache {
     init();
   }
   Future<List<int>> fetchTopIds() {
-    // TODO: implement fetchTopIds
-    throw UnimplementedError();
+    return null;
   }
 
   void init() async {
@@ -22,10 +21,9 @@ class NewsDbProvider implements Source, Cache {
     db = await openDatabase(
       path,
       version: 1,
-      onCreate: (Database newDb, int version) {
-        newDb.execute("""
-        CREATE TABLE Items
-        (
+      onCreate: (Database newDb, int version) async {
+        await newDb.execute('''
+        CREATE TABLE items (
           id INTEGER PRIMARY KEY,
           type TEXT,
           by TEXT,
@@ -38,16 +36,16 @@ class NewsDbProvider implements Source, Cache {
           url TEXT,
           score INTEGER,
           title TEXT,
-          descendants INTEGER,
+          descendants INTEGER
         )
-        """);
+        ''');
       },
     );
   }
 
   Future<ItemModel> fetchItem(int id) async {
     final map = await db.query(
-      "Items",
+      "items",
       columns: null,
       where: "id = ?",
       whereArgs: [id],
@@ -60,7 +58,8 @@ class NewsDbProvider implements Source, Cache {
   }
 
   Future<int> addItem(ItemModel item) {
-    return db.insert("Items", item.toMapForDb());
+    return db.insert("items", item.toMapForDb(),
+        conflictAlgorithm: ConflictAlgorithm.ignore);
   }
 }
 

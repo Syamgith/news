@@ -16,7 +16,7 @@ class NewsApiProvider implements Source {
 
   Future<ItemModel> fetchItem(int id) async {
     final response =
-        await client.get('https://hacker-news.firebaseio.com/v0/user/$id.json');
+        await client.get('https://hacker-news.firebaseio.com/v0/item/$id.json');
     final parsedJson = json.decode(response.body);
     return ItemModel.fromJson(parsedJson);
   }
