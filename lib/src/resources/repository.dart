@@ -4,8 +4,8 @@ import 'package:news/src/resources/news_db_provider.dart';
 
 class Repository {
   List<Source> sources = <Source>[
-    NewsApiProvider(),
     newsDbProvider,
+    NewsApiProvider(),
   ];
 
   List<Cache> caches = <Cache>[
@@ -13,7 +13,7 @@ class Repository {
   ];
 
   Future<List<int>> fetchTopIds() async {
-    return await sources[0].fetchTopIds();
+    return await sources[1].fetchTopIds();
   }
 
   Future<ItemModel> fetchItem(int id) async {
@@ -25,11 +25,11 @@ class Repository {
         break;
       }
     }
-//    for (var cache in caches) {
-//      if (cache != source) {
-//        //cache.addItem(item);
-//      }
-//    }
+    for (var cache in caches) {
+      if (cache != source) {
+        cache.addItem(item);
+      }
+    }
     return item;
   }
 }
