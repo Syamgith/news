@@ -12,8 +12,8 @@ class Repository {
     newsDbProvider,
   ];
 
-  Future<List<int>> fetchTopIds() {
-    return sources[0].fetchTopIds();
+  Future<List<int>> fetchTopIds() async {
+    return await sources[0].fetchTopIds();
   }
 
   Future<ItemModel> fetchItem(int id) async {
@@ -25,11 +25,11 @@ class Repository {
         break;
       }
     }
-    for (var cache in caches) {
-      if (cache != source) {
-        //cache.addItem(item);
-      }
-    }
+//    for (var cache in caches) {
+//      if (cache != source) {
+//        //cache.addItem(item);
+//      }
+//    }
     return item;
   }
 }
