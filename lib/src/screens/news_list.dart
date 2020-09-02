@@ -17,7 +17,7 @@ class NewsList extends StatelessWidget {
   }
 
   buildList(StoriesBloc bloc) {
-    return StreamBuilder(
+    return StreamBuilder<List<int>>(
       stream: bloc.topIds,
       builder: (context, AsyncSnapshot<List<int>> snapshot) {
         if (!snapshot.hasData) {
