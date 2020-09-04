@@ -32,7 +32,10 @@ class NewsListTile extends StatelessWidget {
       children: [
         ListTile(
           title: Text(item.title),
-          subtitle: Text('${item.score} points'),
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text('${item.score} points'),
+          ),
           trailing: Column(
             children: [
               Icon(Icons.comment),
