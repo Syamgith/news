@@ -50,7 +50,6 @@ class NewsDbProvider implements Source, Cache {
       where: "id = ?",
       whereArgs: [id],
     );
-
     if (map.length > 0) {
       return ItemModel.fromDb(map.first);
     }
