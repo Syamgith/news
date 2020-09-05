@@ -19,7 +19,7 @@ class NewsListTile extends StatelessWidget {
           future: snapshot.data[itemId],
           builder: (context, AsyncSnapshot<ItemModel> itemSnapshot) {
             if (itemSnapshot.hasData) {
-              return buildTile(itemSnapshot.data);
+              return buildTile(context, itemSnapshot.data);
             }
             return LoadingContainer();
           },
@@ -28,10 +28,13 @@ class NewsListTile extends StatelessWidget {
     );
   }
 
-  Widget buildTile(ItemModel item) {
+  Widget buildTile(BuildContext context, ItemModel item) {
     return Column(
       children: [
         ListTile(
+          onTap: () {
+            Navigator.pushNamed(context, '/${item.id}');
+          },
           title: Text(item.title),
           subtitle: Padding(
             padding: const EdgeInsets.only(top: 8.0),
