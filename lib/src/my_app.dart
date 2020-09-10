@@ -3,13 +3,17 @@ import 'package:news/src/blocs/stories_provider.dart';
 import 'package:news/src/screens/news_details.dart';
 import 'package:news/src/screens/news_list.dart';
 
+import 'blocs/comments_provider.dart';
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StoriesProvider(
-      child: MaterialApp(
-        title: 'News',
-        onGenerateRoute: routes,
+    return CommentsProvider(
+      child: StoriesProvider(
+        child: MaterialApp(
+          title: 'News',
+          onGenerateRoute: routes,
+        ),
       ),
     );
   }
@@ -24,7 +28,10 @@ class MyApp extends StatelessWidget {
     } else {
       return MaterialPageRoute(
         builder: (context) {
+          final commentsBloc = CommentsProvider.of(context);
           int itemId = int.parse(settings.name.replaceFirst('/', ''));
+
+          commentsBloc.fetchItemWithComments(itemId);
           return NewsDetails(
             itemId: itemId,
           );
