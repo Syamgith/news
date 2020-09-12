@@ -16,7 +16,8 @@ class Comment extends StatelessWidget {
 
           final children = <Widget>[
             ListTile(
-              title: Text(item.text),
+              contentPadding: EdgeInsets.only(right: 16.0, left: depth * 16.0),
+              title: buildText(item),
               subtitle: item.by == '' ? Text('Deleted') : Text(item.by),
             ),
             Divider(),
@@ -38,5 +39,13 @@ class Comment extends StatelessWidget {
         return Text('Comment still Loading');
       },
     );
+  }
+
+  Widget buildText(ItemModel item) {
+    final text = item.text
+        .replaceAll('&#x27', "'")
+        .replaceAll('<p>', '\n\n')
+        .replaceAll('</p>', '');
+    return Text(text);
   }
 }
