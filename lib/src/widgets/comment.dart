@@ -4,7 +4,8 @@ import 'package:news/src/models/item_model.dart';
 class Comment extends StatelessWidget {
   final int itemId;
   final Map<int, Future<ItemModel>> itemMap;
-  Comment({this.itemId, this.itemMap});
+  final int depth;
+  Comment({this.itemId, this.itemMap, this.depth});
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -26,6 +27,7 @@ class Comment extends StatelessWidget {
               Comment(
                 itemId: kidId,
                 itemMap: itemMap,
+                depth: depth + 1,
               ),
             );
           });
