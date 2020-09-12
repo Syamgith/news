@@ -39,7 +39,8 @@ class NewsDetails extends StatelessWidget {
   }
 
   buildList(ItemModel item, Map<int, Future<ItemModel>> itemMap) {
-    List<Widget> children = [buildTitle(item)];
+    List<Widget> children = [];
+    children.add(buildTitle(item));
     List<Widget> commentList = item.kids
         .map((kidId) => Comment(
               itemId: kidId,

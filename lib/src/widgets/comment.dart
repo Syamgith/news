@@ -10,10 +10,23 @@ class Comment extends StatelessWidget {
     return FutureBuilder(
       future: itemMap[itemId],
       builder: (context, AsyncSnapshot<ItemModel> snapshot) {
-        if (!snapshot.hasData) {
-          Text('Comment still Loading');
+        if (snapshot.hasData) {
+          final children = <Widget>[
+            Text(snapshot.data.text),
+          ];
+          snapshot.data.kids.forEach((kidId) {
+            children.add(
+              Comment(
+                itemId: kidId,
+                itemMap: itemMap,
+              ),
+            );
+          });
+          return Column(
+            children: children,
+          );
         }
-        return Text(snapshot.data.text);
+        return Text('Comment still Loading');
       },
     );
   }
