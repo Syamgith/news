@@ -1,6 +1,6 @@
 # News
-New from Hacker News Api <br>
- Used bloc pattern along with provider and recursive data fectching <br>
+News from Hacker News Api https://github.com/HackerNews/API<br>
+ Used Bloc pattern along with provider and recursive data fectching <br>
 ****
 
 
