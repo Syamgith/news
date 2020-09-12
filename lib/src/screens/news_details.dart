@@ -30,10 +30,24 @@ class NewsDetails extends StatelessWidget {
             if (!itemSnapshot.hasData) {
               return Text('Loading');
             }
-            return Text(itemSnapshot.data.title);
+            return buildList(itemSnapshot.data, snapshot.data);
           },
         );
       },
+    );
+  }
+
+  buildList(ItemModel item, Map<int, Future<ItemModel>> itemMap) {}
+
+  buildTitle(ItemModel item) {
+    return Container(
+      margin: EdgeInsets.all(10.0),
+      alignment: Alignment.topCenter,
+      child: Text(
+        item.title,
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+      ),
     );
   }
 }
